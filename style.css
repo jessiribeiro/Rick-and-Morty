@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Fundo da página */
+body {
+    font-family: 'Orbitron', sans-serif; 
+    background: url('/assets/rick-and-morty-night-stars-scenery-hd-wallpaper-uhdpaper.com-368@2@a.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Suavizar fundo */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Ajuste de opaciadade */
+    z-index: -1;
+}
+
+/* Cabeçalho */
+header {
+    text-align: center;
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente */
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #39FF14; /* Verde Neon para o título */
+    margin-bottom: 10px;
+}
+
+/* Barra de pesquisa */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 2px solid #39FF14; /* Borda verde neon */
+    font-size: 1rem;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+#search-input::placeholder {
+    color: #CCCCCC; /* Placeholder cinza claro */
+}
+
+#search-input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #fff; /* Borda branca ao focar */
+}
+
+/* Container de cartões */
+#characters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espaçamento entre os cards */
+    justify-content: center; /* Centraliza os cards */
+    padding: 20px;
+}
+
+/* Animações */
+
+/* 1. Animação de Fade-In */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 2. Animação de Zoom */
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 3. Animação de Pulso na Borda */
+@keyframes pulseBorder {
+    0% {
+        border-color: #39FF14;
+    }
+    50% {
+        border-color: #32CD32;
+    }
+    100% {
+        border-color: #39FF14;
+    }
+}
+
+/* Estilo dos cartões */
+.card {
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente */
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    width: 250px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #39FF14; /* Borda verde neon */
+    animation: fadeIn 1s ease-out forwards; /* Aplicação da animação de fade-in */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(57, 255, 20, 0.7); /* Sombreado no hover */
+    animation: pulseBorder 1s infinite; /* Aplicação da animação de pulso na borda */
+}
+
+/* Imagem do card */
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Conteúdo do card */
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FFFFFF; /* Título em branco */
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #CCCCCC; /* Texto em cinza claro */
+    margin-bottom: 10px;
+}
+
+.card-text strong {
+    color: #FFFFFF; /* Negrito em branco */
+}
+
+/* Botões */
+.btn-primary {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #39FF14; /* Verde Neon */
+    border: none;
+    border-radius: 25px;
+    color: #000; /* Texto preto */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #32CD32; /* Verde Neon mais escuro no hover */
+    transform: scale(1.05);
+    color: #fff; /* Texto branco no hover */
+    animation: zoom 0.5s ease-in-out forwards; /* Aplicação da animação de zoom */
+}
+
+/* Estilos para o Status */
+.status-value.alive {
+    color: #32CD32; /* Verde para "Alive" */
+}
+
+.status-value.dead {
+    color: #FF0000; /* Vermelho para "Dead" */
+}
+
+.status-value.unknown {
+    color: #FFFF00; /* Amarelo para "Unknown" */
+}
+
+/* Estilos para a Espécie */
+.species-value {
+    color: #ADD8E6; /* Azul claro para todas as espécies */
+}
+
+/* Paginação */
+#pagination {
+    display: flex;
+    justify-content: center; /* Centraliza a paginação */
+    gap: 15px; /* Espaçamento entre os botões */
+    padding: 20px 0;
+}
+
+#pagination .btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #39FF14; /* Borda verde neon */
+    color: #39FF14; /* Texto verde neon */
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+#pagination .btn:hover:not(:disabled) {
+    background-color: #39FF14; /* Verde Neon no hover */
+    color: #000; /* Texto preto no hover */
+    transform: scale(1.05);
+}
+
+#pagination .btn:disabled {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #555;
+    cursor: not-allowed;
+}
+
+/* Rodapé */
+footer {
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente */
+    color: #FFFFFF;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1rem;
+    position: relative;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .card {
+        width: 90%; /* Ajusta a largura dos cards em telas menores */
+    }
+}
+
+@media (max-width: 576px) {
+    .card img {
+        height: 200px; /* Reduz a altura da imagem em dispositivos muito pequenos */
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+    }
+    
+    .btn-primary {
+        font-size: 0.9rem;
+    }
+    
+    #search-input {
+        width: 90%;
+    }
+}
+
+/* Estilos específicos para a página de detalhes */
+#character-detail {
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo preto semi-transparente para o card de detalhes */
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #39FF14; /* Borda verde neon */
+    animation: fadeIn 1s ease-out forwards; /* Aplicação da animação de fade-in */
+}
+
+#character-detail:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(57, 255, 20, 0.7); /* Sombreado no hover */
+    animation: pulseBorder 1s infinite; /* Aplicação da animação de pulso na borda */
+}
+
+#character-detail img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#character-detail .card-body {
+    padding: 20px;
+    text-align: left;
+}
+
+#character-detail .card-title {
+    text-align: center;
+    color: #39FF14; /* Verde Neon para o título */
+}
+
+#character-detail .card-text strong {
+    color: #FFFFFF; /* Negrito em branco */
+}
